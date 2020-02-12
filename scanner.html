@@ -1,0 +1,28 @@
+<!-- AR.js by @jerome_etienne - github: https://github.com/jeromeetienne/ar.js - info: https://medium.com/arjs/augmented-reality-in-10-lines-of-html-4e193ea9fdbf -->
+<script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script>
+<script src="https://cdn.rawgit.com/jeromeetienne/AR.js/dev/aframe/build/aframe-ar.js"></script>
+<script>
+
+
+    function addListeners() {
+        var m = document.querySelector("a-marker")
+        console.log("M:" + m)
+        m.addEventListener("markerFound", (e)=>{
+        console.log("found")
+        parent.addToScore();
+        })
+
+        m.addEventListener("markerLost", (e)=>{
+        console.log("lost")
+        })
+    }
+</script>
+<body style='margin : 0px; overflow: hidden;' onload="addListeners()">
+	<a-scene embedded arjs='sourceType: webcam;'>
+      <a-marker preset='hiro' >
+        <a-entity gltf-model="https://cdn.jsdelivr.net/gh/kapilpau/ar/boat.gltf" modify-materials></a-entity>   
+      </a-marker>
+      
+		<a-camera-static/>
+	</a-scene>
+</body>
